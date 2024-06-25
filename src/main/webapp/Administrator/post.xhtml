@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"     
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="./../src/css/reset.css"/>
+        <link rel="stylesheet" href="./../src/css/style.css"/>
+        <link rel="stylesheet" href="./../src/css/Painel/post.css"/>
+        <title>Painel administrador</title>
+    </h:head>
+
+    <h:body>
+        <header>
+            <img src="./../src/img/Logo.png" alt="Logo" width="140px" height="80px"/>
+            <nav>
+                <ul>
+                    <li><a href="#principal">INICIO</a></li>
+                    <li><a href="#produtos">Gerenciar Slider</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h:form id="CadastrarForm" enctype="multipart/form-data">
+                 <input type="hidden" name="action" value="newpost"> </input>
+                <h:outputLabel value="Titulo" />
+                <p:inputText value="#{Addpost.title}" />
+                <br/>
+                <h:outputLabel value="Descrição" />
+                <p:inputText value="#{Addpost.description}" />
+                <br/>
+                <h:outputLabel value="Arquivo" />
+                <p:fileUpload value="#{Addpost.filePart}" mode="simple" />
+                <p:commandButton value="Salvar" action="#{Addpost.Addposts}" ajax="false"/>
+            </h:form>
+        </main>
+    </h:body>
+</html>

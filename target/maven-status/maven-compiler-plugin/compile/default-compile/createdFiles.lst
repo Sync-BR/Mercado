@@ -1,0 +1,6 @@
+Production\Config.class
+Servlet\PostServlets.class
+Beans\PostBean.class
+Dao\PostdaoInterface.class
+Dao\Postdao.class
+util\Conexao.class
