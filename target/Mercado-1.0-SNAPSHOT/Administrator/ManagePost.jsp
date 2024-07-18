@@ -13,12 +13,14 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/src/css/style.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/src/css/Painel/post.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+        <script src="../src/js/update.js"></script>
 
 
         <title>Painel administrador</title>
+
     </head>
 
-    <body>
+    <body >
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
         <header>
@@ -26,7 +28,8 @@
             <nav>
                 <ul>
                     <li><a href="#principal">INICIO</a></li>
-                    <li><a href="#produtos">Gerenciar Slider</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Administrator/Post.jsp">Efetuar post</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Administrator/ManagePost.jsp">Gerenciar Slider</a></li>
                 </ul>
             </nav>
         </header>
@@ -45,15 +48,7 @@
                     flex-direction: row;
                     gap: 15px;
                 }
-                .card-img-top{
-                    width: 286px;
-                    height: 180px;
-                    border: 2px double black;
-                    border-radius: 60px;
-                }
-                .btn{
-                    height: auto;
-                }
+                
 
 
 
@@ -77,12 +72,19 @@
                     width: 100%;
                 }
 
-
-
             </Style>
 
 
             <style>
+                p {
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    -webkit-line-clamp: 3; /* Mostrar até 4 linhas */
+                    /* Outros estilos */
+                    white-space: normal; /* Permite que o texto quebre normalmente */
+                    text-overflow: ellipsis; /* Adiciona reticências quando o texto é cortado */
+                }
 
                 .modal-footer {
                     flex-wrap: nowrap;
@@ -101,15 +103,16 @@
                 try {
                     List<PostBean> posts = Returnpost.Returnpost();
                     for (PostBean post : posts) {
-                        out.print(" <form action=\"" + request.getContextPath() + "/Post\" method=\"post\" >");
+                        out.print(" <form action=\"" + request.getContextPath() + "/Post\" method=\"post\"  onclick=\"atualizarValor()\">");
                         out.print("<input type=\"hidden\" name=\"action\" value=\"select\">");
                         out.print("<div class=\"card\" style=\"width: 18rem;\">");
                         out.print("<img class=\"card-img-top\" src=\"" + request.getContextPath() + "/src/img/Posts/" + post.getImg() + "\" alt=\"" + post.getTitle() + "\">");
-                        out.print("<div class=\"card-body\">");
-                        out.print(("<p>ID: " + post.getId()+ " </p>"));
+                        out.print("<div class=\"card-body\" >");
+                        out.print(("<p>ID: " + post.getId() + " </p>"));
                         out.print(("<p>Nome: " + post.getTitle() + " </p>"));
                         out.print("<input type=\"hidden\"  id=\"title\" value=\"" + post.getTitle() + "\" name=\"title\" style=\"border: none;\" >");
-                        out.print(("<p>Descrição " + post.getTitle() + " </p>"));
+
+                        out.print(("<p>Descrição " + post.getDescription() + " </p>"));
                         out.print("<input type=\"hidden\"  id=\"description\" value=\"" + post.getDescription() + "\" name=\"description\" style=\"border: none;\" >");
                         out.print("<input type=\"hidden\"  id=\"Iduser\" value=\"" + post.getId() + "\" name=\"Iduser\" style=\"border: none;\" >");
 
@@ -123,7 +126,6 @@
                     e.printStackTrace();
                 }
             %>
-
 
 
 

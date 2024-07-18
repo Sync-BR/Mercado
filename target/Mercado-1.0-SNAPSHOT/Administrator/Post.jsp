@@ -4,25 +4,26 @@
     Author     : Eduar
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="pt-BR">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./../src/css/reset.css">
-        <link rel="stylesheet" href="./../src/css/style.css">
-        <link rel="stylesheet" href="./../src/css/Painel/post.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/src/css/reset.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/src/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/src/css/Painel/post.css">
         <title>Painel administrador</title>
     </head>
 
     <body>
         <header>
-            <img src="./../src/img/Logo.png" alt="Logo" width="140px" height="80px">
+            <img src="${pageContext.request.contextPath}/src/img/Logo.png" alt="Logo" width="140px" height="80px">
             <nav>
                 <ul>
                     <li><a href="#principal">INICIO</a></li>
-                    <li><a href="#produtos">Gerenciar Slider</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Administrator/Post.jsp">Efetuar post</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Administrator/ManagePost.jsp">Gerenciar Slider</a></li>
                 </ul>
             </nav>
         </header>

@@ -1,9 +1,17 @@
 
 
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.util.Locale"%>
+<%@page import="Beans.ProductsBean"%>
+<%@page import="Dao.ProductsDao"%>
 <%@page import="java.util.List"%>
 <%@page import="Beans.PostBean"%>
 <%@page import="Dao.Postdao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    NumberFormat dinheiro = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+    NumberFormat dinheiroSTR = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+%>
 <html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
@@ -41,14 +49,13 @@
                      *
                      *
                      */
-
                     Postdao Returnpost = new Postdao();
                     try {
                         out.print("<div id=\"carouselExampleSlidesOnly\" class=\"carousel slide\" data-ride=\"carousel\">");
                         out.print("<div class=\"carousel-inner\">");
                         out.print("<div class=\"carousel-item active\">");
                         out.print("<img class=\"d-block w-100\" src=\"./src/img/Posts/Principal.png\" alt=\"Primaria\" height=\"600px\">");
-                        
+
                         out.print("</div>");
                         List<PostBean> posts = Returnpost.Returnpost();
                         for (PostBean post : posts) {
@@ -69,6 +76,26 @@
                 %>
 
 
+            </section>
+
+            <section class="returnProducts">
+
+                <h1>Produtos</h1>
+                <%                    
+                    ProductsDao returnProducts = new ProductsDao();
+                    List<ProductsBean> products = returnProducts.returnProducts();
+                    for (ProductsBean productsInfor : products) {
+                       out.print(" <div class=\"card\" style=\"width: 18rem;\">");
+                       out.print("<img src=\"./src/img/Posts/Produtos/" + productsInfor.getProductImages() +"\" class=\"card-img-top\" alt=\""+productsInfor.getProductName()+"\">");
+                       out.print("<div class=\"card-body\">");
+                       out.print("<h5 class=\"card-title\">"+productsInfor.getProductName()+"</h5>");
+                       out.print("<p class=\"card-text\">"+productsInfor.getProductDescription()+"</p>");
+                       out.print("<a href=\"#\" class=\"btn btn-primary\">Comprar</a>");
+                       out.print("</div></div>");
+
+                    }
+
+                %>
             </section>
         </main>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

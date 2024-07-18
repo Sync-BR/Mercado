@@ -16,7 +16,7 @@ public class Conexao {
     public static Connection getconnection() throws Exception {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            return DriverManager.getConnection("jdbc:mysql://127.0.0.1/mercado", "root", "");
+            return DriverManager.getConnection("jdbc:mysql://127.0.0.1/mercado?useUnicode=true&characterEncoding=UTF-8", "root", "");
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -26,7 +26,7 @@ public class Conexao {
     }
                
                //Fechar conexão
-    private static void close(Connection conn, PreparedStatement stmt, ResultSet rs) throws Exception {
+    private static void close(Connection conn, PreparedStatement stmt, ResultSet rs) throws Exception { 
         try {
             if (rs != null) {
                 rs.close();

@@ -1,6 +1,8 @@
 package Beans;
 
 import Dao.Postdao;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -95,5 +97,14 @@ public class PostBean {
 
     public void setId(int id) {
         this.id = id;
+    }
+    public static void main(String[] args) {
+                // Define o formato para número
+        NumberFormat formatoNumero = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+        
+        // Exemplo de uso:
+        double valor = 1500.25;
+        String valorFormatado = formatoNumero.format(valor);
+        System.out.println("Valor formatado: " + valorFormatado);
     }
 }
